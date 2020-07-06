@@ -8,4 +8,8 @@ git push -u origin master
 $$$$$$$$$$$$$$$$$
 
 
+<<<<<<< HEAD
 this is user A
+=======
+this is file user b
+>>>>>>> 3b8bf473d7a6aed879f9af9d01422507cdf0f9fb
