@@ -1,3 +1,13 @@
+https://www.itsolutionstuff.com/post/laravel-6-queue-tutorial-laravel-6-send-mail-with-queue-exampleexample.html
+
+
+
+
+
+
+
+
+
  Command "make:repository" is not defined.  
 
   Did you mean one of these?

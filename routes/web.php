@@ -17,6 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('email-test', function(){
+
+    $details['email'] = 'irfanabc@gmail.com';
+
+    dispatch(new App\Jobs\SendEmailJob($details));
+
+    dd('done');
+});
+
+
 Auth::routes();
 
 
