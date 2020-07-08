@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use App\User;
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +42,27 @@ class UserController extends BaseController
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
+
+        $data = ([
+            'name' => $request->post('name'),
+            'email' => $request->post('email'),
+            'username' => $request->post('username'),
+            ]);
+        Mail::send('emails.welcome', $data, function ($message) {
+            $message->from('irfan@example.com', 'Laravel');
+
+            $message->to('info@example.com')->cc('bar@example.com');
+        });
+
+        // Mail::send('emails.welcome', $data, function ($message) use ($data) {
+        //     $message->to($data['email'], $data['name'])
+        //         ->subject('Welcome to LMS')
+        //         ->from('info@example.com', 'Irfan');
+        // });
+
+       // Mail::to($request->post('email'))->send(new WelcomeEmail($data));
+
+
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('admin.users.index')

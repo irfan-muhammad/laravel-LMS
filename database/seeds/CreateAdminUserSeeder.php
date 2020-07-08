@@ -20,12 +20,14 @@ class CreateAdminUserSeeder extends Seeder
         	'password' => bcrypt('irfan')
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
+        $role = Role::create(['name' => 'admin']);
 
         $permissions = Permission::pluck('id','id')->all();
 
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+
+        Role::create(['name' => 'instructors']);
     }
 }
